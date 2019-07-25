@@ -1,0 +1,5 @@
+/node_modules
+/dist
+/lambda
+.DS_Store
+.vscode

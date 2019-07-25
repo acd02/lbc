@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "lib": ["es6", "es2018", "dom"],
+    "module": "es6", // for the source maps to work properly with the emotion babel plugin
+    "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "paths": {
+      "*": ["./src/*"]
+    },
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es6",
+    "typeRoots": ["./typings"],
+    "types": ["node"]
+  },
+  "awesomeTypescriptLoaderOptions": {
+    "useTranspileModule": true
+  },
+  "exclude": ["./serverless"]
+}
