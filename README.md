@@ -1,6 +1,6 @@
 # Poi Starter Kit
 
-[demo](https://poi-starter-kit.netlify.com/)
+[demo](https://acd-lbc.netlify.com/)
 
 ## Usage:
 
