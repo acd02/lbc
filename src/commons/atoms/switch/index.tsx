@@ -21,7 +21,7 @@ export function Switch(props: Props) {
 
   React.useEffect(() => {
     pipe(
-      fromPredicate<boolean>(_isInitialMount => _isInitialMount && !!props.shouldReset)(
+      fromPredicate<boolean>(_isInitialMount => !_isInitialMount && !!props.shouldReset)(
         isInitialMount
       ),
       mapOpt(() => setChecked(false))
