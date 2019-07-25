@@ -3,7 +3,6 @@ import { styles } from '../styles'
 
 import * as React from 'react'
 import { fold } from 'fp-ts/lib/Either'
-import { isNone } from 'fp-ts/lib/Option'
 import { Formik, FormikProps, Form } from 'formik'
 import { toast } from 'react-toastify'
 
@@ -19,11 +18,7 @@ import { Err, Message, MessageWithID } from 'shared/model'
 
 export function MessageForm() {
   const [shouldReset, setShouldReset] = React.useState(false)
-  const { state, fetchMessages, addMessage } = useMessageStore()
-
-  React.useEffect(() => {
-    isNone(state.maybeMessages) && fetchMessages()
-  }, [])
+  const { addMessage } = useMessageStore()
 
   return (
     <div className={formStyles.root}>

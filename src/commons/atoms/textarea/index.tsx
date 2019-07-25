@@ -50,7 +50,9 @@ export function TextArea<T>(props: Props<T>) {
 
   React.useLayoutEffect(() => {
     pipe(
-      fromPredicate<boolean>(_isInitialMount => !_isInitialMount)(isInitialMount),
+      fromPredicate<boolean>(_isInitialMount => !_isInitialMount && !!props.shouldReset)(
+        isInitialMount
+      ),
       mapOpt(() => {
         dispatch({ type: 'SET_VALUE', payload: '' })
 

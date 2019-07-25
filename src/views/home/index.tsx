@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { css } from 'emotion'
 import { pipe } from 'fp-ts/lib/pipeable'
-import { map as mapOpt, toUndefined, none, some, Option } from 'fp-ts/lib/Option'
+import { map as mapOpt, toUndefined, isNone, none, some, Option } from 'fp-ts/lib/Option'
 
 import { MatchProps } from 'routes'
 import { Loader } from 'commons/atoms/loader'
@@ -15,11 +15,15 @@ import { useMessageStore } from './store'
 import { RenderMessages } from './renderMessages'
 
 export function Home(_props: MatchProps) {
-  const { state, revealMessage, removeMessage } = useMessageStore()
+  const { state, revealMessage, removeMessage, fetchMessages } = useMessageStore()
   const [showModal, setShowModal] = React.useState(false)
   const [maybeSelectedMessage, setSelectedMessage] = React.useState<
     Option<MessageWithID>
   >(none)
+
+  React.useEffect(() => {
+    isNone(state.maybeMessages) && fetchMessages()
+  }, [])
 
   function handleMessageClick(message: MessageWithID) {
     if (message.label === 'private' && !message.contentHasBeenRevealed) {
