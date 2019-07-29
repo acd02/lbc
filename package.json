@@ -8,7 +8,7 @@
     "build": "npm run lint-prod && poi --prod --config ./build/poi.config.js && netlify-lambda build serverless",
     "lint": "eslint --config .eslintrc.js ./src --ext .ts,.tsx,.js --fix",
     "lint-prod": "eslint --config .eslintrc.prod.js ./src --ext .ts,.tsx,.js --fix",
-    "lint-staged": "lint-staged --config .lintstagedrc.json",
+    "lint-staged": "lint-staged --config ./.lintstagedrc.json",
     "prettier": "prettier --config .prettierrc.json --write \"src/**/*.{ts,tsx}\"",
     "serverless": "netlify-lambda serve serverless --port 4001"
   },
