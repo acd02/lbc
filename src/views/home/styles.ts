@@ -3,10 +3,17 @@ import { shade } from 'polished'
 
 import { colors, spacings, fontSizes } from 'styles'
 
-const toast = (isPublic: boolean) =>
-  css({
-    backgroundColor: `${colors[isPublic ? 'primary' : 'secondary']} !important`
+const toast = (status: 'public' | 'private' | 'error') => {
+  const setBgColor = (() => {
+    if (status === 'public') return colors.primary
+    if (status === 'private') return colors.secondary
+    else return colors.error
+  })()
+
+  return css({
+    backgroundColor: `${setBgColor} !important`
   })
+}
 
 const messageRoot = css({
   position: 'relative',
