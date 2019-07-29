@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Option, none } from 'fp-ts/lib/Option'
+import { Either } from 'fp-ts/lib/Either'
 
 import { Lens } from 'monocle-ts'
 
@@ -15,7 +16,7 @@ export type State = {
 type Provider = {
   state: State
   fetchMessages(): void
-  addMessage(newMessage: MessageWithID): void
+  addMessage(newMessage: MessageWithID): Either<void, void>
   removeMessage(message: MessageWithID): void
   revealMessage(message: MessageWithID): void
 }

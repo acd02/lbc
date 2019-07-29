@@ -3,6 +3,7 @@ import { styles } from '../styles'
 
 import * as React from 'react'
 import { fold } from 'fp-ts/lib/Either'
+import { pipe } from 'fp-ts/lib/pipeable'
 import { Formik, FormikProps, Form } from 'formik'
 import { toast } from 'react-toastify'
 
@@ -30,13 +31,29 @@ export function MessageForm() {
         }}
         onSubmit={(data, actions) => {
           post<Message, Err, MessageWithID>(data)('/.netlify/functions/postMessage')
-            .then(fold(err => console.error(err), message => addMessage(message)))
+            .then(
+              fold(
+                err => console.error(err),
+                message => {
+                  pipe(
+                    addMessage(message),
+                    fold(
+                      () =>
+                        toast.info('oops', {
+                          className: styles.toast('error')
+                        }),
+                      () =>
+                        toast.info('your message has been published', {
+                          className: styles.toast(data.label)
+                        })
+                    )
+                  )
+                }
+              )
+            )
             .finally(() => {
               actions.resetForm()
               setShouldReset(true)
-              toast.info('your message has been published', {
-                className: styles.toast(data.label === 'public')
-              })
             })
         }}
         onReset={() => setShouldReset(true)}

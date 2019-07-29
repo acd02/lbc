@@ -2,10 +2,13 @@ import {
   getOrElse,
   filter as filterOpt,
   map as mapOpt,
+  fold as foldOpt,
   some,
   option
 } from 'fp-ts/lib/Option'
+import { right, left } from 'fp-ts/lib/Either'
 import { pipe } from 'fp-ts/lib/pipeable'
+import { constVoid } from 'fp-ts/lib/function'
 import {
   snoc,
   findFirst,
@@ -58,22 +61,27 @@ function addMessage(
   dispatch: React.Dispatch<Action>,
   state: State
 ) {
-  pipe(
+  return pipe(
     optionSequence(state.maybeMessages, getItem(LOCAL_STORED_KEY)()),
-    mapOpt(([stateMessages, localStoredMessages]) => {
-      const parsedLocalStoredMessages: MessageWithID[] = JSON.parse(localStoredMessages)
-      const updatedMessage =
-        newMessage.label === 'public' ? newMessage : messageLens.set('')(newMessage)
+    foldOpt(
+      () => left(constVoid()),
+      ([stateMessages, localStoredMessages]) => {
+        const parsedLocalStoredMessages: MessageWithID[] = JSON.parse(localStoredMessages)
+        const updatedMessage =
+          newMessage.label === 'public' ? newMessage : messageLens.set('')(newMessage)
 
-      dispatch({
-        type: 'ADD_MESSAGE',
-        payload: some(snoc(stateMessages, updatedMessage))
-      })
-      setItem(
-        LOCAL_STORED_KEY,
-        JSON.stringify(snoc(parsedLocalStoredMessages, newMessage))
-      )()
-    })
+        dispatch({
+          type: 'ADD_MESSAGE',
+          payload: some(snoc(stateMessages, updatedMessage))
+        })
+        setItem(
+          LOCAL_STORED_KEY,
+          JSON.stringify(snoc(parsedLocalStoredMessages, newMessage))
+        )()
+
+        return right(constVoid())
+      }
+    )
   )
 }
 
