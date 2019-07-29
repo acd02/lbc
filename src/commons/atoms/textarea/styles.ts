@@ -6,6 +6,12 @@ const wrapper = css({
   position: 'relative'
 })
 
+/**
+ * HACK: Firefox
+ *
+ * 1. otherwise, the border won't be visible
+ */
+
 const root = css({
   position: 'relative',
   overflow: 'hidden',
@@ -15,6 +21,7 @@ const root = css({
     top: 'calc(100% - 2px)',
     left: 0,
     right: 0,
+    zIndex: 1 /* 1 */,
     height: '1px',
     backgroundColor: 'rgba(0,0,0,0.12)'
   },
@@ -33,6 +40,7 @@ const root = css({
 
 const isFocused = css({
   '&::after': {
+    zIndex: 1 /* 1 */,
     transform: 'translateX(0)'
   }
 })
