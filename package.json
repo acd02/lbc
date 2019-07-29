@@ -51,7 +51,7 @@
     "formik": "1.5.8",
     "fp-ts": "2.0.3",
     "fp-ts-local-storage": "0.2.0",
-    "husky": "3.0.1",
+    "husky": "3.0.2",
     "lint-staged": "9.2.0",
     "monocle-ts": "2.0.0",
     "netlify-lambda": "1.5.0",
