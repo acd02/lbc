@@ -63,13 +63,13 @@ module.exports = {
     if (eslintRule) eslintRule.test = [/\.jsx?$/, /\.tsx$/]
 
     config.resolve.alias = Object.assign({}, config.resolve.alias, {
-      commons: computePath('../src/commons/'),
-      routes: computePath('../src/routes.ts'),
-      shared: computePath('../src/shared/'),
-      stores: computePath('../src/stores/'),
-      styles: computePath('../src/styles/'),
-      utils: computePath('../src/utils/'),
-      views: computePath('../src/views/')
+      '/commons': computePath('../src/commons/'),
+      '/routes': computePath('../src/routes.ts'),
+      '/shared': computePath('../src/shared/'),
+      '/stores': computePath('../src/stores/'),
+      '/styles': computePath('../src/styles/'),
+      '/utils': computePath('../src/utils/'),
+      '/views': computePath('../src/views/')
     })
 
     return config
