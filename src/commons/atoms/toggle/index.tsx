@@ -1,3 +1,4 @@
+import { cx } from 'emotion'
 import * as React from 'react'
 
 import { useIsInitialMount } from '/utils/hooks'
@@ -14,27 +15,29 @@ type Props = {
   shouldReset?: boolean
 }
 
-export function Switch(props: Props) {
+export function Toggle(props: Props) {
+  const { shouldReset, onChecked, onUnchecked, id, className } = props
   const [isChecked, setChecked] = React.useState<boolean>(props.checkedOnMount || false)
   const isInitialMount = useIsInitialMount()
 
   React.useEffect(() => {
-    doWhen(!isInitialMount && !!props.shouldReset, () => setChecked(false))
-  }, [props.shouldReset])
+    doWhen(!isInitialMount && !!shouldReset, () => setChecked(false))
+  }, [shouldReset])
 
-  function handleClick() {
-    const { onChecked, onUnchecked } = props
+  function updateState() {
     setChecked(!isChecked)
 
     if (onChecked && !isChecked) onChecked()
     if (onUnchecked && isChecked) onUnchecked()
   }
 
-  const { id, className } = props
+  function handleKeyPress(e: React.KeyboardEvent) {
+    if (e.key === 'Enter' || e.which === 13) updateState()
+  }
 
   return (
-    <div className={className}>
-      <input onClick={handleClick} type="checkbox" id={id} className={styles.root} />
+    <div className={cx(styles.root, className)} tabIndex={0} onKeyPress={handleKeyPress}>
+      <input onClick={updateState} type="checkbox" id={id} className={styles.input} />
       <label htmlFor={id} className={styles.setLabel({ isChecked })} />
     </div>
   )

@@ -5,8 +5,8 @@ import * as React from 'react'
 import { toast } from 'react-toastify'
 
 import { Button } from '/commons/atoms/button'
-import { Switch } from '/commons/atoms/switch'
 import { TextArea } from '/commons/atoms/textarea'
+import { Toggle } from '/commons/atoms/toggle'
 import { Err, Message, MessageWithID } from '/shared/model'
 import { post } from '/utils/http'
 
@@ -85,7 +85,7 @@ export function MessageForm() {
                 {values.message.length} / 280
               </span>
               <div className={formStyles.switchSection}>
-                <Switch
+                <Toggle
                   id="switchOne"
                   shouldReset={shouldReset}
                   onChecked={() => setFieldValue('label', 'private')}

@@ -1,9 +1,17 @@
+import cx from 'classnames'
 import { css } from 'emotion'
 import { tint } from 'polished'
 
-import { colors } from '/styles'
+import { colors, outline } from '/styles'
 
-const root = css({
+const root = cx(
+  css({
+    display: 'inline-block'
+  }),
+  outline
+)
+
+const input = css({
   display: 'none'
 })
 
@@ -36,6 +44,7 @@ function setLabel({ isChecked }: { isChecked: boolean }) {
 }
 
 export const styles = {
+  input,
   root,
   setLabel
 }
