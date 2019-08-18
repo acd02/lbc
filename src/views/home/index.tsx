@@ -1,18 +1,18 @@
-import * as React from 'react'
 import { css } from 'emotion'
+import { isNone, map as mapOpt, none, Option, some, toUndefined } from 'fp-ts/lib/Option'
 import { pipe } from 'fp-ts/lib/pipeable'
-import { map as mapOpt, toUndefined, isNone, none, some, Option } from 'fp-ts/lib/Option'
+import * as React from 'react'
 
-import { MatchProps } from 'routes'
-import { Loader } from 'commons/atoms/loader'
-import { Modal } from 'commons/atoms/modal'
-import { useMemoizedCallback } from 'utils/hooks'
-import { MessageWithID } from 'shared/model'
-import { spacings } from 'styles'
+import { Loader } from '/commons/atoms/loader'
+import { Modal } from '/commons/atoms/modal'
+import { MatchProps } from '/routes'
+import { MessageWithID } from '/shared/model'
+import { spacings } from '/styles'
+import { useMemoizedCallback } from '/utils/hooks'
 
 import { MessageForm } from './form'
-import { useMessageStore } from './store'
 import { RenderMessages } from './renderMessages'
+import { useMessageStore } from './store'
 
 export function Home(_props: MatchProps) {
   const { state, revealMessage, removeMessage, fetchMessages } = useMessageStore()

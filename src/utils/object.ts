@@ -1,4 +1,5 @@
 // see: https://bit.ly/2YPOFq7
+/* eslint-disable fp/no-let, fp/no-loops, fp/no-mutation */
 interface OmitKeys {
   <T extends object, K extends [...(keyof T)[]]>(obj: T, ...keys: K): {
     [K2 in Exclude<keyof T, K[number]>]: T[K2]
@@ -25,4 +26,24 @@ export const omitKeys: OmitKeys = (obj, ...keys) => {
   for (key in obj) if (!keys.includes(key)) ret[key] = obj[key]
 
   return ret
+}
+/* eslint-enable */
+
+/**
+ * Preserves the type of the array returned by Object.keys
+ *
+ * @example
+ *
+ * const item = {
+ *   label: 'ten',
+ *   id: 10,
+ *   isCool: true
+ * }
+ *
+ * const keys = objectKeys(item).map(k => k.toUpperCase())
+ * // keys = 'label' | 'id' | 'isCool'
+ *
+ */
+export function objectKeys<T>(obj: T): (keyof T)[] {
+  return Object.keys(obj) as (keyof T)[]
 }

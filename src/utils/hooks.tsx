@@ -9,6 +9,7 @@ export function useIsInitialMount() {
   const isInitialMountRef = React.useRef(true)
 
   React.useLayoutEffect(() => {
+    /* eslint-disable-next-line fp/no-mutation */
     if (isInitialMountRef.current) isInitialMountRef.current = false
   })
 
@@ -47,6 +48,7 @@ export function useMemoizedCallback<T>(
 
   // The effect updates the callbackRef depending on the dependencies.
   React.useEffect(() => {
+    /* eslint-disable-next-line fp/no-mutation */
     callbackRef.current = updatedCallback
   }, dependencyList)
 

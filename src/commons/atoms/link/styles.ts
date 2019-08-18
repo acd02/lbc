@@ -1,5 +1,6 @@
 import { css } from 'emotion'
-import { colors } from 'styles'
+
+import { colors } from '/styles'
 
 function setRoot({ isActive }: { isActive: boolean }) {
   return css({

@@ -1,12 +1,11 @@
-import * as React from 'react'
-import { Option, none } from 'fp-ts/lib/Option'
 import { Either } from 'fp-ts/lib/Either'
+import { none, Option } from 'fp-ts/lib/Option'
+import * as React from 'react'
 
-import { Lens } from 'monocle-ts'
-
-import { MessageWithID } from 'shared/model'
+import { MessageWithID } from '/shared/model'
 
 import { actions } from './actions'
+import { reducer } from './reducer'
 
 export type State = {
   maybeMessages: Option<MessageWithID[]>
@@ -32,35 +31,6 @@ export function MessagesProvider(props: React.Props<{}>) {
   const initialState: State = {
     maybeMessages: none,
     isFetching: false
-  }
-
-  function reducer(state: State, action: Action): State {
-    switch (action.type) {
-      case 'SET_DATA':
-        return Lens.fromProps<State>()(['maybeMessages', 'isFetching']).set({
-          maybeMessages: action.payload,
-          isFetching: false
-        })(state)
-      case 'FETCH_MESSAGES':
-        return Lens.fromProps<State>()(['maybeMessages', 'isFetching']).set({
-          isFetching: true,
-          maybeMessages: none
-        })(state)
-      case 'ADD_MESSAGE':
-        return Lens.fromProps<State>()(['maybeMessages']).set({
-          maybeMessages: action.payload
-        })(state)
-      case 'REMOVE_MESSAGE':
-        return Lens.fromProps<State>()(['maybeMessages']).set({
-          maybeMessages: action.payload
-        })(state)
-      case 'REVEAL_MESSAGE':
-        return Lens.fromProps<State>()(['maybeMessages']).set({
-          maybeMessages: action.payload
-        })(state)
-      default:
-        return state
-    }
   }
 
   // to prevent it from being called twice everytime, see: https://bit.ly/2H64VgM

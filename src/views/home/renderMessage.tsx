@@ -1,12 +1,11 @@
-import { styles } from './styles'
-
-import * as React from 'react'
 import dayjs from 'dayjs'
+import * as React from 'react'
 
-import { Icon } from 'commons/atoms/icon'
-import { Eye, Close } from 'commons/svg'
+import { Icon } from '/commons/atoms/icon'
+import { Close, Eye } from '/commons/svg'
+import { MessageWithID } from '/shared/model'
 
-import { MessageWithID } from 'shared/model'
+import { styles } from './styles'
 
 type Props = {
   messsage: MessageWithID

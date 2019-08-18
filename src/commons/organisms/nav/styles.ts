@@ -1,6 +1,6 @@
 import { css } from 'emotion'
 
-import { spacings, colors, fontSizes } from 'styles'
+import { colors, fontSizes, spacings } from '/styles'
 
 function setRoot({ hasBorder }: { hasBorder: boolean }) {
   return css({

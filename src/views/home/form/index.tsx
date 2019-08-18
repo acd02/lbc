@@ -1,22 +1,21 @@
-import { styles as formStyles } from './styles'
-import { styles } from '../styles'
-
-import * as React from 'react'
+import { Form, Formik, FormikProps } from 'formik'
 import { fold } from 'fp-ts/lib/Either'
 import { pipe } from 'fp-ts/lib/pipeable'
-import { Formik, FormikProps, Form } from 'formik'
+import * as React from 'react'
 import { toast } from 'react-toastify'
 
-import { Switch } from 'commons/atoms/switch'
-import { Button } from 'commons/atoms/button'
-import { TextArea } from 'commons/atoms/textarea'
-import { post } from 'utils/http'
+import { Button } from '/commons/atoms/button'
+import { Switch } from '/commons/atoms/switch'
+import { TextArea } from '/commons/atoms/textarea'
+import { Err, Message, MessageWithID } from '/shared/model'
+import { post } from '/utils/http'
 
-import { validationSchema } from './validation'
 import { useMessageStore } from '../store'
+import { styles } from '../styles'
+import { styles as formStyles } from './styles'
+import { validationSchema } from './validation'
 
-import { Err, Message, MessageWithID } from 'shared/model'
-
+/* eslint-disable-next-line max-lines-per-function */
 export function MessageForm() {
   const [shouldReset, setShouldReset] = React.useState(false)
   const { addMessage } = useMessageStore()
@@ -57,6 +56,7 @@ export function MessageForm() {
             })
         }}
         onReset={() => setShouldReset(true)}
+        /* eslint-disable-next-line max-lines-per-function */
         render={(formState: FormikProps<Message>) => {
           const { setFieldValue, values, dirty } = formState
           function handleSubmit(e: React.MouseEvent) {

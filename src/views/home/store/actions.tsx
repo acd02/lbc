@@ -1,26 +1,26 @@
+import { getItem, setItem } from 'fp-ts-local-storage'
+import { sequenceT } from 'fp-ts/lib/Apply'
 import {
-  getOrElse,
-  filter as filterOpt,
-  map as mapOpt,
-  fold as foldOpt,
-  some,
-  option
-} from 'fp-ts/lib/Option'
-import { right, left } from 'fp-ts/lib/Either'
-import { pipe } from 'fp-ts/lib/pipeable'
-import { constVoid } from 'fp-ts/lib/function'
-import {
-  snoc,
   findFirst,
   findIndex,
-  unsafeUpdateAt,
-  unsafeDeleteAt
+  snoc,
+  unsafeDeleteAt,
+  unsafeUpdateAt
 } from 'fp-ts/lib/Array'
-import { sequenceT } from 'fp-ts/lib/Apply'
-import { setItem, getItem } from 'fp-ts-local-storage'
+import { left, right } from 'fp-ts/lib/Either'
+import { constVoid } from 'fp-ts/lib/function'
+import {
+  filter as filterOpt,
+  fold as foldOpt,
+  getOrElse,
+  map as mapOpt,
+  option,
+  some
+} from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/lib/pipeable'
 import { Lens } from 'monocle-ts'
 
-import { MessageWithID } from 'shared/model'
+import { MessageWithID } from '/shared/model'
 
 import { Action, State } from './index'
 

@@ -1,21 +1,22 @@
-import { styles } from './styles'
-
-import * as React from 'react'
 import cx from 'classnames'
-import {
-  fromNullable,
-  fromPredicate,
-  map as mapOpt,
-  option,
-  isSome
-} from 'fp-ts/lib/Option'
+import { ErrorMessage, Field, FieldProps } from 'formik'
 import { sequenceT } from 'fp-ts/lib/Apply'
+import {
+  filter as filterMap,
+  fromNullable,
+  isSome,
+  map as mapOpt,
+  option
+} from 'fp-ts/lib/Option'
 import { pipe } from 'fp-ts/lib/pipeable'
-import { FieldProps, Field, ErrorMessage } from 'formik'
+import * as React from 'react'
+
+import { ErrorTransition } from '/commons/atoms/errorTransition'
+import { useIsInitialMount } from '/utils/hooks'
 
 import { reducer } from './reducer'
-import { ErrorTransition } from 'commons/atoms/errorTransition'
-import { useIsInitialMount } from 'utils/hooks'
+import { styles } from './styles'
+import { setCloneContent } from './utils'
 
 const optionSequence = sequenceT(option)
 
@@ -34,6 +35,7 @@ type Props<T> = {
   shouldReset?: boolean
 }
 
+/* eslint-disable-next-line max-lines-per-function */
 export function TextArea<T>(props: Props<T>) {
   const [state, dispatch] = React.useReducer(reducer, {
     defaultHeight: 0,
@@ -50,22 +52,13 @@ export function TextArea<T>(props: Props<T>) {
 
   React.useLayoutEffect(() => {
     pipe(
-      fromPredicate<boolean>(_isInitialMount => !_isInitialMount && !!props.shouldReset)(
-        isInitialMount
-      ),
-      mapOpt(() => {
+      optionSequence(fromNullable(cloneRef.current), fromNullable(textAreaRef.current)),
+      filterMap(() => !isInitialMount && !!props.shouldReset),
+      mapOpt(([clone, textArea]) => {
         dispatch({ type: 'SET_VALUE', payload: '' })
-
-        pipe(
-          optionSequence(
-            fromNullable(cloneRef.current),
-            fromNullable(textAreaRef.current)
-          ),
-          mapOpt(([clone, textArea]) => {
-            setCloneContent(clone, '')
-            textArea.style.height = `${defaultHeight}px`
-          })
-        )
+        setCloneContent(clone, '')
+        /* eslint-disable-next-line fp/no-mutation */
+        textArea.style.height = `${defaultHeight}px`
       })
     )
   }, [props.shouldReset])
@@ -82,22 +75,16 @@ export function TextArea<T>(props: Props<T>) {
         const clone = cloneRef.current as HTMLDivElement
 
         setCloneContent(clone, state.value)
+        /* eslint-disable-next-line fp/no-mutation */
         textArea.style.height = `${Math.max(clone.offsetHeight, defaultHeight)}px`
       })
     )
   }, [])
 
-  function setCloneContent(cloneElm: HTMLDivElement, value: string) {
-    // we want to prevent the 'newValue' to be serialized as html
-    cloneElm.textContent = value + '\n'
-    const hiddenCloneInnerHTML = cloneElm.innerHTML
-    const newContent = hiddenCloneInnerHTML.replace(/\n/g, '<br>')
-    cloneElm.innerHTML = newContent
-  }
-
   return (
     <Field
       name={props.name}
+      /* eslint-disable-next-line max-lines-per-function */
       render={({ field, form }: FieldProps) => {
         function handleInput(e: React.ChangeEvent<HTMLTextAreaElement>) {
           dispatch({ type: 'SET_VALUE', payload: e.target.value })
@@ -109,6 +96,7 @@ export function TextArea<T>(props: Props<T>) {
             ),
             mapOpt(([clone, textArea]) => {
               setCloneContent(clone, e.target.value)
+              /* eslint-disable-next-line fp/no-mutation */
               textArea.style.height = `${Math.max(clone.offsetHeight, defaultHeight)}px`
             })
           )

@@ -1,4 +1,4 @@
-import { breakpoints, Breakpoint } from './breakpoints'
+import { Breakpoint, breakpoints } from './breakpoints'
 
 export function toRem(num: number): string {
   return `${num / 16}rem`

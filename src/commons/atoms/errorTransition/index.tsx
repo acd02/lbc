@@ -1,10 +1,9 @@
-import { styles } from './styles'
-
-import * as React from 'react'
 import cx from 'classnames'
 import { css } from 'emotion'
+import * as React from 'react'
 
 import { CSSAnimate } from '../animate'
+import { styles } from './styles'
 
 const timeout = 250
 

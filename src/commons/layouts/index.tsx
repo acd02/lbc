@@ -1,10 +1,11 @@
-import { styles } from './styles'
 import 'react-toastify/dist/ReactToastify.min.css'
 
 import * as React from 'react'
 import { ToastContainer } from 'react-toastify'
 
-import { Nav } from 'commons/organisms/nav'
+import { Nav } from '/commons/organisms/nav'
+
+import { styles } from './styles'
 
 export function Main(props: React.Props<{}>) {
   return (

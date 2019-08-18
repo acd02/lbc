@@ -1,6 +1,6 @@
 import { css } from 'emotion'
 
-import { colors, easings } from 'styles'
+import { colors, easings } from '/styles'
 
 const wrapper = css({
   position: 'relative'

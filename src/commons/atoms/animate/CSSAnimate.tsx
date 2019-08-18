@@ -1,7 +1,7 @@
-import * as React from 'react'
+import { sequenceT } from 'fp-ts/lib/Apply'
 import { fromNullable, map as mapOpt, option } from 'fp-ts/lib/Option'
 import { pipe } from 'fp-ts/lib/pipeable'
-import { sequenceT } from 'fp-ts/lib/Apply'
+import * as React from 'react'
 
 import { Animate } from './Animate'
 

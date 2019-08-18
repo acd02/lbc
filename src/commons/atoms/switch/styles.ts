@@ -1,7 +1,7 @@
 import { css } from 'emotion'
 import { tint } from 'polished'
 
-import { colors } from 'styles'
+import { colors } from '/styles'
 
 const root = css({
   display: 'none'

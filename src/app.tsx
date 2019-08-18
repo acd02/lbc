@@ -3,17 +3,15 @@ if (process.env.ISPROD) require('./polyfill')
 
 import './styles/reset.css'
 
+import { Router } from '@reach/router'
 import * as React from 'react'
 import { render } from 'react-dom'
-import { Router } from '@reach/router'
 
-import { Routes } from 'routes'
-
-import { Main } from 'commons/layouts'
-import { Home } from 'views/home'
-import { NotFound } from 'views/notFound'
-
-import { MessagesProvider } from 'views/home/store'
+import { Main } from '/commons/layouts'
+import { Routes } from '/routes'
+import { Home } from '/views/home'
+import { MessagesProvider } from '/views/home/store'
+import { NotFound } from '/views/notFound'
 
 const App = (
   <MessagesProvider>

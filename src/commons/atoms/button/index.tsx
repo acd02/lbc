@@ -1,7 +1,7 @@
-import { styles } from './styles'
-
 import cx from 'classnames'
 import * as React from 'react'
+
+import { styles } from './styles'
 
 type Props = {
   label: React.ReactElement<{}> | string

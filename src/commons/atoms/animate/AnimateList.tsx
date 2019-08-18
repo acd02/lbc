@@ -1,8 +1,8 @@
 import * as React from 'react'
 import * as ReactTransition from 'react-transition-group'
 
-import { makeAnimation } from 'styles'
-import { useIsInitialMount } from 'utils/hooks'
+import { makeAnimation } from '/styles'
+import { useIsInitialMount } from '/utils/hooks'
 
 type Props<T> = {
   list: T[]
@@ -18,6 +18,20 @@ type Props<T> = {
 type ReactTransitionClassNames = {
   onEnter?: string
   onExit?: string
+}
+
+function displayPlaceHolder(placeholder: React.ReactElement) {
+  return (
+    <span
+      className={makeAnimation({
+        name: 'fadeIn',
+        duration: 350,
+        fillMode: 'forwards'
+      })}
+    >
+      {placeholder}
+    </span>
+  )
 }
 
 export function AnimateList<T>(props: Props<T>) {
@@ -48,15 +62,7 @@ export function AnimateList<T>(props: Props<T>) {
   const classNames: ReactTransitionClassNames = {}
 
   return showPlaceholder ? (
-    <span
-      className={makeAnimation({
-        name: 'fadeIn',
-        duration: 350,
-        fillMode: 'forwards'
-      })}
-    >
-      {placeholder}
-    </span>
+    displayPlaceHolder(placeholder)
   ) : (
     <ReactTransition.TransitionGroup component={null} appear={appear}>
       {list.map((item: T, index) => (

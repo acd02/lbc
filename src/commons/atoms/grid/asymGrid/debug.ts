@@ -1,8 +1,8 @@
-import { fromNullable, map as mapOpt, getOrElse } from 'fp-ts/lib/Option'
-import { pipe } from 'fp-ts/lib/pipeable'
 import { flow } from 'fp-ts/lib/function'
+import { fromNullable, getOrElse, map as mapOpt } from 'fp-ts/lib/Option'
+import { pipe } from 'fp-ts/lib/pipeable'
 
-import { ColItem } from './makeAsymGrid'
+import { ColItem } from './types'
 
 type RowSizeCheck = {
   stringifyContent: string

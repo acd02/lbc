@@ -1,7 +1,7 @@
-import { css } from 'emotion'
 import cx from 'classnames'
+import { css } from 'emotion'
 
-import { animations, toRem, aboveBp } from 'styles'
+import { aboveBp, animations, toRem } from '/styles'
 
 const setSize = (val: number) =>
   css({

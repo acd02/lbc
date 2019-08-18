@@ -1,10 +1,10 @@
-import * as React from 'react'
-import { css } from 'emotion'
 import cx from 'classnames'
+import { css } from 'emotion'
+import * as React from 'react'
 
-import { flexContainer, aboveBp, spacings } from 'styles'
-import { Breakpoint } from 'styles/breakpoints'
-import { Spacing } from 'styles/spacings'
+import { aboveBp, flexContainer, spacings } from '/styles'
+import { Breakpoint } from '/styles/breakpoints'
+import { Spacing } from '/styles/spacings'
 
 type Col = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 

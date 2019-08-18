@@ -1,5 +1,6 @@
 import { css, keyframes } from 'emotion'
-import { colors } from 'styles'
+
+import { colors } from '/styles'
 
 const slideDown = keyframes({
   '0%': {

@@ -1,10 +1,9 @@
-import * as React from 'react'
 import { css } from 'emotion'
+import * as React from 'react'
 
-import { AnimateList } from 'commons/atoms/animate'
-import { makeAnimation, easings, colors } from 'styles'
-
-import { MessageWithID } from 'shared/model'
+import { AnimateList } from '/commons/atoms/animate'
+import { MessageWithID } from '/shared/model'
+import { colors, easings, makeAnimation } from '/styles'
 
 import { RenderMessage } from './renderMessage'
 

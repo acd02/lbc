@@ -1,9 +1,10 @@
-import { styles } from './styles'
-
-import * as React from 'react'
 import { Link as _Link } from '@reach/router'
 import cx from 'classnames'
-import { Routes } from 'routes'
+import * as React from 'react'
+
+import { Routes } from '/routes'
+
+import { styles } from './styles'
 
 type Props = {
   label: string

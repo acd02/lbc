@@ -1,10 +1,10 @@
-import { styles } from './styles'
-import { makeAnimation } from 'styles'
-
 import cx from 'classnames'
 import * as React from 'react'
 
-import { CSSAnimate } from 'commons/atoms/animate'
+import { CSSAnimate } from '/commons/atoms/animate'
+import { makeAnimation } from '/styles'
+
+import { styles } from './styles'
 
 const timeout = 350
 

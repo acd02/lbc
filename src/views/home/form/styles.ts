@@ -1,7 +1,7 @@
 import { css } from 'emotion'
 import { tint } from 'polished'
 
-import { spacings, colors, fontSizes } from 'styles'
+import { colors, fontSizes, spacings } from '/styles'
 
 const root = css({
   maxWidth: '600px'
@@ -37,7 +37,9 @@ const charactersCountBlock = (hasReachedLimit: boolean) =>
     padding: `${spacings.xs} ${spacings.sm}`,
     fontSize: fontSizes.sm,
     backgroundColor: tint(0.2, colors[hasReachedLimit ? 'error' : 'primary']),
-    color: '#fff'
+    color: '#fff',
+    fontFeatureSettings: '"tnum"', // text doesn't move thanks to this property
+    fontVariantNumeric: 'tabular-nums' // and this one also
   })
 
 export const styles = {

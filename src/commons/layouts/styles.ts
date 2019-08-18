@@ -1,5 +1,6 @@
 import { css } from 'emotion'
-import { aboveBp, spacings, toRem } from 'styles'
+
+import { aboveBp, spacings, toRem } from '/styles'
 
 const root = css({
   display: 'flex',

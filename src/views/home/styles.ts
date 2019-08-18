@@ -1,7 +1,7 @@
 import { css } from 'emotion'
 import { shade } from 'polished'
 
-import { colors, spacings, fontSizes } from 'styles'
+import { colors, fontSizes, spacings } from '/styles'
 
 const toast = (status: 'public' | 'private' | 'error') => {
   const setBgColor = (() => {

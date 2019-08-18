@@ -1,6 +1,6 @@
 import { css } from 'emotion'
 
-import { spacings, animations, colors, easings } from 'styles'
+import { animations, colors, easings, spacings } from '/styles'
 
 const root = css({
   position: 'fixed',

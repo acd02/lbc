@@ -6,4 +6,4 @@ export function AsymGrid(props: Props) {
   return makeAsymGrid({ rows, rootClassName, commonRowStyles, commonColStyles })
 }
 
-export { Row } from './makeAsymGrid'
+export { Row } from './types'

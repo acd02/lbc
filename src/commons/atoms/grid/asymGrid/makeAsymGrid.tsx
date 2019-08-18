@@ -1,43 +1,18 @@
-/* eslint-disable max-lines */
-import * as React from 'react'
-import { css } from 'emotion'
 import cx from 'classnames'
+import { css } from 'emotion'
 import { lookup } from 'fp-ts/lib/Array'
 import { map as mapOpt, toUndefined } from 'fp-ts/lib/Option'
 import { pipe } from 'fp-ts/lib/pipeable'
+import * as React from 'react'
 
-import { flexContainer, spacings } from 'styles'
-import { Breakpoint } from 'styles/breakpoints'
-import { compact } from 'utils/array'
-import { omitKeys } from 'utils/object'
+import { flexContainer, spacings } from '/styles'
+import { Breakpoint } from '/styles/breakpoints'
+import { compact } from '/utils/array'
+import { omitKeys } from '/utils/object'
 
-import {
-  StripedAsymCol,
-  StripedColWithBp,
-  addBreakpointsToColItem,
-  betweenBp,
-  sortColsByBp
-} from './utils'
 import { debugLog } from './debug'
-
-export type Col = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
-
-export type ColItem = {
-  content: React.ReactElement
-  className?: string
-  aboveMobile?: StripedAsymCol
-  aboveTablet?: StripedAsymCol
-  aboveDesktop?: StripedAsymCol
-}
-
-export type Row = {
-  className?: string
-  firstCol: ColItem
-  secondCol?: ColItem
-  thirdCol?: ColItem
-  fourthCol?: ColItem
-  fifthCol?: ColItem
-}
+import { ColItem, Row, StripedColWithBp } from './types'
+import { addBreakpointsToColItem, betweenBp, sortColsByBp } from './utils'
 
 export type Props = {
   rows: Row[]

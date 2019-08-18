@@ -1,22 +1,12 @@
-import { fromNullable, map as mapOpt, toUndefined, getOrElse } from 'fp-ts/lib/Option'
-import { pipe } from 'fp-ts/lib/pipeable'
-import { contramap, ordNumber } from 'fp-ts/lib/Ord'
 import { sort } from 'fp-ts/lib/Array'
+import { fromNullable, getOrElse, map as mapOpt, toUndefined } from 'fp-ts/lib/Option'
+import { contramap, ordNumber } from 'fp-ts/lib/Ord'
+import { pipe } from 'fp-ts/lib/pipeable'
 
-import { compact } from 'utils/array'
-import { breakpoints, Breakpoint } from 'styles/breakpoints'
-import { Spacing } from 'styles/spacings'
+import { Breakpoint, breakpoints } from '/styles/breakpoints'
+import { compact } from '/utils/array'
 
-import { ColItem, Col } from './makeAsymGrid'
-
-type AsymCol = {
-  col: Col
-  above?: Breakpoint
-  gutter?: Spacing
-}
-
-export type StripedAsymCol = Omit<AsymCol, 'above'>
-export type StripedColWithBp = StripedAsymCol & { above?: Breakpoint }
+import { ColItem, StripedAsymCol, StripedColWithBp } from './types'
 
 function withBreakPoint(col: StripedAsymCol, bp: Breakpoint): StripedColWithBp {
   return { ...col, above: bp }

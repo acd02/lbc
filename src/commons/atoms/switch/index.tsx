@@ -1,10 +1,9 @@
-import { styles } from './styles'
-
 import * as React from 'react'
-import { fromPredicate, map as mapOpt } from 'fp-ts/lib/Option'
-import { pipe } from 'fp-ts/lib/pipeable'
 
-import { useIsInitialMount } from 'utils/hooks'
+import { useIsInitialMount } from '/utils/hooks'
+import { doWhen } from '/utils/logic'
+
+import { styles } from './styles'
 
 type Props = {
   id: string
@@ -20,12 +19,7 @@ export function Switch(props: Props) {
   const isInitialMount = useIsInitialMount()
 
   React.useEffect(() => {
-    pipe(
-      fromPredicate<boolean>(_isInitialMount => !_isInitialMount && !!props.shouldReset)(
-        isInitialMount
-      ),
-      mapOpt(() => setChecked(false))
-    )
+    doWhen(!isInitialMount && !!props.shouldReset, () => setChecked(false))
   }, [props.shouldReset])
 
   function handleClick() {

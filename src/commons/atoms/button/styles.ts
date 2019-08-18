@@ -1,6 +1,6 @@
 import { css } from 'emotion'
 
-import { colors, spacings, fontSizes } from 'styles'
+import { colors, fontSizes, spacings } from '/styles'
 
 function setRoot({ isSecondary }: { isSecondary: boolean }) {
   return css({

@@ -1,6 +1,6 @@
-import * as React from 'react'
-import { fromNullable, map as mapOpt, getOrElse } from 'fp-ts/lib/Option'
+import { fromNullable, getOrElse, map as mapOpt } from 'fp-ts/lib/Option'
 import { pipe } from 'fp-ts/lib/pipeable'
+import * as React from 'react'
 
 type Props = {
   onExternalClick: () => void
